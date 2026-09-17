@@ -1,0 +1,126 @@
+1. Find students who scored more than Rahul.
+Select * from Student where marks >(select marks from Student where name='rahul');
+
++-------+--------+--------+-------+
+| stuID | Name   | city   | marks |
++-------+--------+--------+-------+
+|     5 | Sneha  | Mumbai |    90 |
+|     8 | Pooja  | Pune   |    95 |
+|    10 | Riya   | Pune   |    88 |
+|    13 | Sahil  | Mumbai |    95 |
+|    19 | Aditya | Mumbai |    92 |
++-------+--------+--------+-------+
+5 rows in set (0.00 sec)
+
+2. Find students who scored less than Priya.
+Select * from Student where marks<(Select marks from Student where name='Priya');
++-------+--------+--------+-------+
+| stuID | Name   | city   | marks |
++-------+--------+--------+-------+
+|     4 | Amit   | Pune   |    65 |
+|     7 | Karan  | Mumbai |    55 |
+|     9 | Akash  | Mumbai |    60 |
+|    11 | Vikas  | Mumbai |    45 |
+|    14 | Komal  | Mumbai |    68 |
+|    16 | Meena  | Pune   |    58 |
+|    18 | Isha   | Pune   |    70 |
+|    20 | Simran | Pune   |    50 |
++-------+--------+--------+-------+
+8 rows in set (0.00 sec)
+
+3. Find students having the same marks as Rohit.
++-------+-------+--------+-------+
+| stuID | Name  | city   | marks |
++-------+-------+--------+-------+
+|     2 | Priya | Pune   |    72 |
+|     3 | Rohit | Mumbai |    72 |
++-------+-------+--------+-------+
+2 rows in set (0.00 sec)
+
+4. Find students who scored above average marks.
+
+Select AVG(marks) from student;
++------------+
+| AVG(marks) |
++------------+
+|    74.0000 |
++------------+
+1 row in set (0.00 sec)
+
++-------+--------+--------+-------+
+| stuID | Name   | city   | marks |
++-------+--------+--------+-------+
+|     1 | Rahul  | Mumbai |    85 |
+|     5 | Sneha  | Mumbai |    90 |
+|     6 | Neha   | Pune   |    78 |
+|     8 | Pooja  | Pune   |    95 |
+|    10 | Riya   | Pune   |    88 |
+|    12 | Anjali | Pune   |    82 |
+|    13 | Sahil  | Mumbai |    95 |
+|    15 | Nikhil | Pune   |    75 |
+|    17 | Varun  | Mumbai |    85 |
+|    19 | Aditya | Mumbai |    92 |
++-------+--------+--------+-------+
+10 rows in set (0.00 sec)
+
+5. Find students who scored below average marks.
+mysql> Select * from Student where marks <(Select AVG(marks) from student);
++-------+--------+--------+-------+
+| stuID | Name   | city   | marks |
++-------+--------+--------+-------+
+|     2 | Priya  | Pune   |    72 |
+|     3 | Rohit  | Mumbai |    72 |
+|     4 | Amit   | Pune   |    65 |
+|     7 | Karan  | Mumbai |    55 |
+|     9 | Akash  | Mumbai |    60 |
+|    11 | Vikas  | Mumbai |    45 |
+|    14 | Komal  | Mumbai |    68 |
+|    16 | Meena  | Pune   |    58 |
+|    18 | Isha   | Pune   |    70 |
+|    20 | Simran | Pune   |    50 |
++-------+--------+--------+-------+
+10 rows in set (0.00 sec)
+
+6. Find student with highest marks.
+mysql> select MAX(marks) from Student;
++------------+
+| MAX(marks) |
++------------+
+|         95 |
++------------+
+1 row in set (0.00 sec)
+
+7.Find student with the lowest marks.
+
+mysql> select MIN(marks) from Student;
++------------+
+| MIN(marks) |
++------------+
+|         45 |
++------------+
+1 row in set (0.00 sec)
+
+
+8. Find students whose marks are equal to maximum marks.
+mysql> Select * from Student where marks=(select Max(marks) from Student);
++-------+-------+--------+-------+
+| stuID | Name  | city   | marks |
++-------+-------+--------+-------+
+|     8 | Pooja | Pune   |    95 |
+|    13 | Sahil | Mumbai |    95 |
++-------+-------+--------+-------+
+2 rows in set (0.00 sec)
+
+9. Find students whose marks are greater than maximum marks of students from Mumbai.
+
+mysql> Select * from Student where marks>(Select max(marks) from Student where city='Mumbai');
+Empty set (0.00 sec)
+
+10.Find students whose marks are less than minimum marks of students from Pune.
+Select * from Student where marks<(Select min(marks) from Student where city='Pune');
++-------+-------+--------+-------+
+| stuID | Name  | city   | marks |
++-------+-------+--------+-------+
+|    11 | Vikas | Mumbai |    45 |
++-------+-------+--------+-------+
+1 row in set (0.00 sec)
